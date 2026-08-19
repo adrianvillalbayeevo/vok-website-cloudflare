@@ -33,7 +33,7 @@ export default function About() {
       { threshold: 0.1 }
     );
 
-    const elements = sectionRef.current?.querySelectorAll("[data-animate]");
+    const elements = document.querySelectorAll("[data-animate]");
     elements?.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();

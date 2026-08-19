@@ -71,7 +71,7 @@ export default function HeroSection() {
                 BUILD WITH VOK
                 <i className="ri-arrow-right-line ml-2" />
               </Link>
-              <Link to="/platform" className="btn-ghost">
+              <Link to="/process" className="btn-ghost">
                 SEE HOW IT WORKS
                 <i className="ri-arrow-right-line ml-2" />
               </Link>

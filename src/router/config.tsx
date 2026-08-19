@@ -12,7 +12,7 @@ const routes: RouteObject[] = [
     element: <Home />,
   },
   {
-    path: "/platform",
+    path: "/process",
     element: <Platform />,
   },
   {

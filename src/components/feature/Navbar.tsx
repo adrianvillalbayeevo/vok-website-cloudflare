@@ -4,7 +4,7 @@ import VokLogo from "@/components/base/VokLogo";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Process", href: "/platform" },
+  { label: "Process", href: "/process" },
   { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
 ];

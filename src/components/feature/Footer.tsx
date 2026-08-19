@@ -3,7 +3,7 @@ import VokLogo from "@/components/base/VokLogo";
 
 const footerLinks = {
   explore: [
-    { label: "Platform", href: "/platform" },
+    { label: "Process", href: "/process" },
     { label: "Work", href: "/work" },
     { label: "About", href: "/about" },
   ],
