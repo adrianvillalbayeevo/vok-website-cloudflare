@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* === VOK DARK VOID THEME === */
+  /* Font family tokens */
+  --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-label: 'Inter', system-ui, sans-serif;
+
+  /* === VOK COLORS === */
+  --color-void: #0C1330;
+  --color-bone-white: #ffffff;
+  --color-ash-gray: #9a9a9a;
+  --color-silver-mist: #bdbdbd;
+  --color-coral: #FF5A1F;
+  --color-coral-dim: #ff5a1f80;
+  --color-deep-navy: #0C1330;
+  --color-navy-light: #1a2342;
+
+  /* === BACKGROUND SCALE (navy void) === */
+  --background-50: 0.18 0.07 264;
+  --background-100: 0.15 0.075 264;
+  --background-200: 0.12 0.075 264;
+  --background-300: 0.10 0.07 264;
+  --background-400: 0.09 0.065 264;
+  --background-500: 0.08 0.06 264;
+  --background-600: 0.07 0.055 264;
+  --background-700: 0.06 0.05 264;
+  --background-800: 0.05 0.045 264;
+  --background-900: 0.04 0.04 264;
+  --background-950: 0.03 0.035 264;
+
+  /* === PRIMARY SCALE (coral accent) === */
+  --primary-50: 0.97 0.03 45;
+  --primary-100: 0.93 0.06 45;
+  --primary-200: 0.87 0.10 45;
+  --primary-300: 0.80 0.14 45;
+  --primary-400: 0.73 0.18 45;
+  --primary-500: 0.65 0.22 45;
+  --primary-600: 0.58 0.20 45;
+  --primary-700: 0.50 0.18 45;
+  --primary-800: 0.42 0.16 45;
+  --primary-900: 0.35 0.14 45;
+  --primary-950: 0.28 0.12 45;
+
+  /* === ACCENT SCALE (coral same as primary) === */
+  --accent-50: 0.97 0.03 45;
+  --accent-100: 0.93 0.06 45;
+  --accent-200: 0.87 0.10 45;
+  --accent-300: 0.80 0.14 45;
+  --accent-400: 0.73 0.18 45;
+  --accent-500: 0.65 0.22 45;
+  --accent-600: 0.58 0.20 45;
+  --accent-700: 0.50 0.18 45;
+  --accent-800: 0.42 0.16 45;
+  --accent-900: 0.35 0.14 45;
+  --accent-950: 0.28 0.12 45;
+
+  /* === SECONDARY SCALE (gray) === */
+  --secondary-50: 0.97 0.01 264;
+  --secondary-100: 0.93 0.015 264;
+  --secondary-200: 0.88 0.02 264;
+  --secondary-300: 0.80 0.025 264;
+  --secondary-400: 0.72 0.03 264;
+  --secondary-500: 0.55 0.04 264;
+  --secondary-600: 0.48 0.035 264;
+  --secondary-700: 0.40 0.03 264;
+  --secondary-800: 0.32 0.025 264;
+  --secondary-900: 0.24 0.02 264;
+  --secondary-950: 0.18 0.015 264;
+
+  /* === FOREGROUND SCALE (white text) === */
+  --foreground-50: 1.0 0 0;
+  --foreground-100: 0.98 0.005 0;
+  --foreground-200: 0.95 0.01 0;
+  --foreground-300: 0.90 0.015 0;
+  --foreground-400: 0.85 0.02 0;
+  --foreground-500: 0.78 0.025 0;
+  --foreground-600: 0.70 0.03 0;
+  --foreground-700: 0.62 0.035 0;
+  --foreground-800: 0.55 0.04 0;
+  --foreground-900: 0.45 0.05 0;
+  --foreground-950: 0.35 0.06 0;
+
+  /* === TYPOGRAPHY TOKENS === */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-nav-label: 14px;
+  --leading-nav-label: 1.2;
+  --tracking-nav-label: 0.35px;
+  --text-body: 18px;
+  --leading-body: 1.5;
+  --text-heading-2xs: 24px;
+  --leading-heading-2xs: 1.25;
+  --tracking-heading-2xs: -0.48px;
+  --text-heading-xs: 27px;
+  --leading-heading-xs: 1;
+  --text-subheading: 36px;
+  --leading-subheading: 1.2;
+  --text-heading-sm: 42px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -1.68px;
+  --text-heading: 48px;
+  --leading-heading: 1.1;
+  --tracking-heading: -1.68px;
+  --text-heading-lg: 78px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: -3.12px;
+  --text-display: 113px;
+  --leading-display: 1.1;
+  --tracking-display: -4.52px;
+
+  /* === SPACING === */
+  --spacing-6: 6px;
+  --spacing-12: 12px;
+  --spacing-18: 18px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-36: 36px;
+  --spacing-60: 60px;
+  --spacing-96: 96px;
+  --spacing-120: 120px;
+
+  /* === RADIUS === */
+  --radius-nav: 24px;
+  --radius-tags: 9999px;
+  --radius-cards: 24px;
+  --radius-buttons: 24px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-body);
+    background-color: #0C1330;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: #ffffff;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+  }
+  p {
+    font-weight: 200;
+    color: #bdbdbd;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center whitespace-nowrap transition-all duration-200;
+    background-color: #FF5A1F;
+    color: #ffffff;
+    border-radius: 24px;
+    padding: 14.4px 24px;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+  .btn-primary:hover {
+    background-color: #e84d15;
+    transform: translateY(-1px);
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center whitespace-nowrap transition-all duration-200;
+    background: none;
+    color: #9a9a9a;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .btn-ghost:hover {
+    color: #ffffff;
+  }
+  .section-padding {
+    padding: 60px 24px;
+  }
+  @media (min-width: 768px) {
+    .section-padding {
+      padding: 96px 48px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding: 120px 96px;
+    }
+  }
+  .container-max {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .vok-label {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.35px;
+    color: #FF5A1F;
+  }
+  .vok-headline {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+  .vok-body {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #bdbdbd;
+  }
+}
+
+/* Platform step icon cells — illuminate on scroll, grow on hover */
+.icon-cell {
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
+}
+.icon-cell .icon-glyph {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), color 0.4s ease, opacity 0.4s ease;
+  will-change: transform;
+}
+.icon-cell .icon-halo {
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  background: radial-gradient(circle, rgba(255, 90, 31, 0.55) 0%, rgba(255, 90, 31, 0.15) 40%, transparent 70%);
+}
+.icon-cell.lit {
+  background-color: #1f2b52;
+  border-color: rgba(255, 90, 31, 0.45);
+  box-shadow: 0 0 24px rgba(255, 90, 31, 0.18);
+}
+.icon-cell.lit .icon-halo {
+  opacity: 1;
+  transform: scale(1);
+}
+.icon-cell.lit .icon-glyph {
+  color: #FF5A1F;
+}
+.icon-cell:hover {
+  background-color: #243058;
+  border-color: rgba(255, 90, 31, 0.7);
+  box-shadow: 0 0 34px rgba(255, 90, 31, 0.3);
+}
+.icon-cell:hover .icon-halo {
+  opacity: 1;
+  transform: scale(1.15);
+}
+.icon-cell:hover .icon-glyph {
+  transform: scale(2.6);
+  color: #ffffff;
+  opacity: 0.55;
+}
+
+/* Large step visual — same illuminate + grow effect, tuned for the big squares */
+.icon-cell-lg {
+  border-radius: 24px;
+}
+.icon-cell-lg .icon-glyph {
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), color 0.5s ease, opacity 0.5s ease;
+  will-change: transform;
+}
+.icon-cell-lg .icon-halo {
+  background: radial-gradient(circle, rgba(255, 90, 31, 0.5) 0%, rgba(255, 90, 31, 0.15) 45%, transparent 72%);
+}
+.icon-cell-lg.lit {
+  border-color: rgba(255, 90, 31, 0.5);
+  box-shadow: 0 0 44px rgba(255, 90, 31, 0.18);
+}
+.icon-cell-lg:hover {
+  border-color: rgba(255, 90, 31, 0.8);
+  box-shadow: 0 0 56px rgba(255, 90, 31, 0.32);
+}
+.icon-cell-lg:hover .icon-glyph {
+  transform: scale(1.45);
+  color: #ffffff;
+  opacity: 0.6;
+}
+
+/* Honeypot field - hidden from real users, visible to bots */
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0C1330;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a2342;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a3360;
+}
+
+/* Selection color */
+::selection {
+  background-color: #FF5A1F40;
+  color: #ffffff;
+}
