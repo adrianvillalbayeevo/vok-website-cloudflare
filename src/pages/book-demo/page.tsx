@@ -174,10 +174,10 @@ export default function BookDemo() {
                           Website
                         </label>
                         <input
-                          type="url"
+                          type="text"
                           name="website"
                           className="w-full bg-[#1a2342] border border-white/10 rounded-[12px] px-4 py-3 text-white font-body font-light text-sm focus:outline-none focus:border-coral/50 transition-colors"
-                          placeholder="https://yourclub.com"
+                          placeholder="yourclub.com"
                         />
                       </div>
                     </div>
