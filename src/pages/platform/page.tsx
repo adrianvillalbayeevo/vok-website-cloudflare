@@ -93,12 +93,12 @@ export default function Platform() {
         <PlatformDnaRibbon />
 
         {/* Title + steps — no hero, straight to the process */}
-        <section className="relative pt-6 md:pt-8 pb-2">
+        <section className="relative pt-28 md:pt-36 pb-2">
           <div className="container-max mx-auto px-6 md:px-12 lg:px-16">
             <div data-animate className="opacity-0">
               <span className="vok-label">The VOK Process</span>
               <h1 className="vok-headline text-5xl md:text-6xl lg:text-[78px] leading-[1.1] tracking-[-3.12px] mt-2 text-white">
-                OUR PROCESS
+                Our process
               </h1>
               <p className="vok-body mt-4 max-w-xl">
                 From your first brief to a live platform in weeks — a clear, repeatable path built around how you actually operate.
