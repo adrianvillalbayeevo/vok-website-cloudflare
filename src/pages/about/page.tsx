@@ -44,7 +44,7 @@ export default function About() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="relative pt-12 md:pt-16 pb-6 md:pb-8">
+        <section className="relative pt-28 md:pt-36 pb-6 md:pb-8">
           <div className="container-max mx-auto px-6 md:px-12 lg:px-16">
             <div data-animate className="opacity-0 max-w-4xl">
               <span className="vok-label">About VOK</span>
