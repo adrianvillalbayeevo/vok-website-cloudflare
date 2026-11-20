@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/feature/Navbar";
 import Footer from "@/components/feature/Footer";
-import { supabase } from "@/lib/supabase";
 
 export default function BookDemo() {
   const [submitted, setSubmitted] = useState(false);
@@ -54,21 +53,25 @@ export default function BookDemo() {
     }
 
     try {
-      if (!supabase) throw new Error("Supabase not configured");
-      const { error } = await supabase.from("leads").insert({
-        name,
-        organization: val("organization"),
-        email,
-        phone: val("phone"),
-        website: val("website"),
-        sport: val("industry"),
-        athletes_count: val("members_count"),
-        current_software: val("current_software"),
-        pain_points: val("pain_points"),
-        dream_platform: val("dream_platform"),
-        source: "buildwithvok.com",
+      // Pages Function in functions/api/lead.ts: sends the autoresponder and
+      // the internal notice.
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          organization: val("organization"),
+          email,
+          phone: val("phone"),
+          website: val("website"),
+          sport: val("industry"),
+          athletes_count: val("members_count"),
+          current_software: val("current_software"),
+          pain_points: val("pain_points"),
+          dream_platform: val("dream_platform"),
+        }),
       });
-      if (error) throw error;
+      if (!res.ok) throw new Error(`lead: ${res.status}`);
       setSubmitted(true);
       form.reset();
     } catch {
