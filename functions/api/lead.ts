@@ -1,7 +1,7 @@
 // Cloudflare Pages Function: POST /api/lead
 //
 // Receives the "Book a demo" form and sends two emails through Resend:
-//   (1) an autoresponder to the prospect, with VOK branding;
+//   (1) a short, plain reply to the prospect;
 //   (2) an internal notice with every field of the form.
 //
 // It replaces the old Supabase flow (insert into `leads` -> database webhook ->
@@ -24,7 +24,7 @@ interface Context {
   env: Env;
 }
 
-const FROM = "VOK <contact@buildwithvok.com>";
+const FROM = "Build with VOK <contact@buildwithvok.com>";
 const MAX_FIELD = 2000;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -64,6 +64,7 @@ async function sendEmail(
   subject: string,
   html: string,
   replyTo?: string,
+  text?: string,
 ): Promise<boolean> {
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -71,31 +72,37 @@ async function sendEmail(
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ from: FROM, to, subject, html, reply_to: replyTo }),
+    body: JSON.stringify({ from: FROM, to, subject, html, text, reply_to: replyTo }),
   });
   if (!res.ok) console.error("Resend error:", res.status, await res.text());
   return res.ok;
 }
 
-function autoresponderHtml(name: string, logo: string): string {
-  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F2F2F2;padding:28px 0;font-family:Arial,Helvetica,sans-serif">
-        <tr><td align="center">
-          <table role="presentation" width="480" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:14px;overflow:hidden">
-            <tr><td style="background:#0C1330;padding:22px 28px">
-              <img src="${logo}" alt="VOK" width="88" style="display:block;border:0;height:auto">
-            </td></tr>
-            <tr><td style="padding:32px 28px;color:#0C1330;line-height:1.6">
-              <h1 style="margin:0 0 14px;font-size:22px;color:#0C1330">Thanks, ${name}.</h1>
-              <p style="margin:0 0 14px;font-size:15px">We've received your message and we'll be in touch shortly — usually within 24 hours.</p>
-              <p style="margin:0 0 26px;font-size:15px">In the meantime, we're already thinking about how your club could run on <b>its own platform</b>.</p>
-              <p style="margin:0;font-size:15px">— The VOK team<br><span style="color:#FF5A1F;font-weight:bold">Build with VOK.</span></p>
-            </td></tr>
-            <tr><td style="padding:16px 28px;border-top:1px solid #EAEBEF;color:#8A93A6;font-size:12px">
-              VOK — A brand of Okra USA LLC &nbsp;·&nbsp; <a href="https://buildwithvok.com" style="color:#8A93A6;text-decoration:underline">buildwithvok.com</a>
-            </td></tr>
-          </table>
-        </td></tr>
-      </table>`;
+// The autoresponder reads like a short note from a person, not a newsletter:
+// no card, no banner, no logo, no colors, plus a hand-written plain-text part.
+// Gmail sent the branded version to Promotions, and a prospect who does not
+// see the reply may think the form failed. The first name only, as a person
+// would write it.
+function autoresponderText(firstName: string): string {
+  return `Hi ${firstName},
+
+Thanks for reaching out. We got your message and we'll get back to you within 24 hours.
+
+In the meantime, we're already thinking about how your club could run on its own platform. If anything comes to mind before then, just reply to this email.
+
+The VOK team
+Build with VOK
+buildwithvok.com
+`;
+}
+
+function autoresponderHtml(firstName: string): string {
+  return `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#222">
+<p>Hi ${firstName},</p>
+<p>Thanks for reaching out. We got your message and we'll get back to you within 24 hours.</p>
+<p>In the meantime, we're already thinking about how your club could run on its own platform. If anything comes to mind before then, just reply to this email.</p>
+<p>The VOK team<br>Build with VOK<br><a href="https://buildwithvok.com">buildwithvok.com</a></p>
+</div>`;
 }
 
 function noticeHtml(lead: Record<string, string>): string {
@@ -140,17 +147,15 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
     return json({ ok: false, error: "invalid" }, 422);
   }
 
-  const name = esc(lead.name);
-  // The logo is served by this same site, so it works on the custom domain and
-  // on preview deployments alike.
-  const logo = `${new URL(request.url).origin}/brand/vok_wordmark_white.png`;
+  const firstName = lead.name.split(/\s+/)[0];
 
   const autoresponderOk = await sendEmail(
     env.RESEND_API_KEY,
     lead.email,
     "Thanks for reaching out to VOK",
-    autoresponderHtml(name, logo),
+    autoresponderHtml(esc(firstName)),
     env.NOTIFY_TO,
+    autoresponderText(firstName),
   );
   if (!autoresponderOk) console.error("lead: autoresponder failed");
 
