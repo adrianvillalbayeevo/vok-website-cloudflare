@@ -1,8 +1,10 @@
-// VOK site assets served from Supabase Storage (bucket: site-assets)
-export const STORAGE_BASE = "https://mepfitcboghhdoinanwe.supabase.co/storage/v1/object/public/site-assets";
+// VOK site assets, served by the site itself from `public/brand/`.
+// They used to live in a Supabase Storage bucket; moving them here leaves the
+// site with no dependency on Supabase.
+const BRAND = `${import.meta.env.BASE_URL}brand`;
 export const ASSETS = {
-  logoWhite: `${STORAGE_BASE}/vok_wordmark_white.svg`,
-  logoNavy: `${STORAGE_BASE}/vok_wordmark_navy.svg`,
-  caseMockup: `${STORAGE_BASE}/case_mockup.png`,
-  favicon: `${STORAGE_BASE}/favicon_512.png`,
+  logoWhite: `${BRAND}/vok_wordmark_white.svg`,
+  logoNavy: `${BRAND}/vok_wordmark_navy.svg`,
+  caseMockup: `${BRAND}/case_mockup.png`,
+  favicon: `${BRAND}/favicon_512.png`,
 };

@@ -1,0 +1,6 @@
+node_modules
+out
+.wrangler
+.dev.vars
+auto-imports.d.ts
+package-lock.json
